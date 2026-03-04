@@ -7,7 +7,7 @@ spec:
     app: hotstar
   ports:
     - protocol: TCP
-      port: 80  # Port exposed by the service externally (outside the cluster)
+      port: 3000  # Port exposed by the service externally (outside the cluster)
       targetPort: 3000  # Port your application listens on inside the pods
-      nodePort: 31001
+      nodePort: 31000
   type: NodePort
