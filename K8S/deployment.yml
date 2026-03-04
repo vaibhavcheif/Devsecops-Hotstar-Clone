@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: hotstar
-        image: gashok13193/test:latest
+        image: vaibhavcheif/test:latest
         ports:
         - containerPort: 3000
