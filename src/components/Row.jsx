@@ -38,9 +38,9 @@ useEffect(()=>{
                                               <button className='watchnow'>Watch now</button> <button className='plus'>+</button>                     
         
                                         </div>
-                                        <h2>{item.original_title}</h2>
+                                        <h2>{item.original_title || item.name}</h2>
                                         <div style={{display:"flex"}}>
-                                            <h3>{item.release_date.slice(0,4)}</h3>
+                                            <h3>{(item.release_date || item.first_air_date)?.slice(0,4)}</h3>
                                             <h3> &nbsp;.&nbsp; </h3>
                                             <h3>Rating: {item.vote_average}</h3>
                                         </div>
