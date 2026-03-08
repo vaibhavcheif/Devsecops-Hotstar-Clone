@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/vaibhavcheif/Devsecops-Hotstar-Clone.git'
+            }
+        }
+
+        stage('Check Terraform Version') {
+            steps {
+                sh 'terraform --version'
+            }
+        }
+
+        stage('Run Terraform') {
+            steps {
+                dir('EKS_TERRAFORM') {
+                    sh 'terraform init'
+                    sh 'terraform validate'
+                    sh 'terraform plan'
+                    sh "terraform ${action} --auto-approve"
+                }
+            }
+        }
+
+    }
+}
