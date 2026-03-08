@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
 resource "aws_eks_cluster" "dev_cluster" {
   name     = "dev-eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.29"
+  version  = "1.35"
 
   vpc_config {
     subnet_ids = data.aws_subnets.default.ids
