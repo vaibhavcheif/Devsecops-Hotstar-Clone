@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/gashok13193/HotStar-clone.git'
+                git branch: 'main', url: 'https://github.com/vaibhavcheif/Devsecops-Hotstar-Clone.git'
             }
         }
 
@@ -54,10 +54,10 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: '30a2e9b9-a57c-417a-8e14-dd7e74745fb9', toolName: 'docker') {
+                    withDockerRegistry(credentialsId: 'f5114f9a-f288-41dd-b185-f1a2479fcf59', toolName: 'docker') {
                         sh "docker build -t hotstar ."
-                        sh "docker tag hotstar gashok13193/test:latest"
-                        sh "docker push gashok13193/test:latest"
+                        sh 'docker tag hotstar vaibhavcheif/hotstar:latest'
+                        sh 'docker push vaibhavcheif/hotstar:latest'
                     }
                 }
             }
@@ -66,14 +66,14 @@ pipeline {
         stage('Trivy Image Scan') {
             steps {
                 script {
-                    sh 'trivy image --severity HIGH,CRITICAL gashok13193/test:latest --format table --output trivy-image-report.txt'
+                    sh 'trivy image --severity HIGH,CRITICAL --format table --output trivy-image-report.txt vaibhavcheif/hotstar:latest'
                 }
             }
         }
 
         stage('Deploy Docker') {
             steps {
-                sh "docker run --rm -d --name hotstar -p ${PORT}:3000 gashok13193/test:latest"
+                sh "docker run --rm -d --name hotstar -p ${PORT}:3000 vaibhavcheif/hotstar:latest"
             }
         }
     }
