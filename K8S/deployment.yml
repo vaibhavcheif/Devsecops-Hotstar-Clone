@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hotstar-deployment
+  name: hotstar-clone-deployment
 spec:
-  replicas: 1  
+  replicas: 2  
   selector:
     matchLabels:
-      app: hotstar
+      app: hotstar-clone
   template:
     metadata:
       labels:
-        app: hotstar
+        app: hotstar-clone
     spec:
       containers:
-      - name: hotstar
+      - name: hotstar-clone
         image: vaibhavcheif/hotstardevsecops:latest
         ports:
         - containerPort: 3000
