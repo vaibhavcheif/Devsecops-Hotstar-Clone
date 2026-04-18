@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hotstar-service
+  name: hotstar-clone-service
 spec:
   selector:
-    app: hotstar
+    app: hotstar-clone   # must match the label in your Deployment
   ports:
     - protocol: TCP
-      port: 3000  # Port exposed by the service externally (outside the cluster)
-      targetPort: 3000  # Port your application listens on inside the pods
-      nodePort: 31000
-  type: NodePort
+      port: 3000         # service port
+      targetPort: 3000   # container port
+  type: NodePort         # exposes it on a port accessible via Minikube
